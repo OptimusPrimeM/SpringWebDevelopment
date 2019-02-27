@@ -1,5 +1,7 @@
 package com.optimusprime.SpringWebDevelopment.domain;
 
+import com.optimusprime.SpringWebDevelopment.enums.Difficulty;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -25,8 +27,8 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredient;
 
-//    todo Add
-//    private Difficulty difficulty;
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
 
 
     public Long getId() {
