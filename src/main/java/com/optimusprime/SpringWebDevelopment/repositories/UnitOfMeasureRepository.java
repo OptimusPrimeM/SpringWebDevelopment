@@ -1,7 +1,11 @@
 package com.optimusprime.SpringWebDevelopment.repositories;
 
 import com.optimusprime.SpringWebDevelopment.domain.UnitOfMeasure;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface UnitOfMeasureRepository extends JpaRepository<UnitOfMeasure, Long>{
+import java.util.Optional;
+
+public interface UnitOfMeasureRepository extends CrudRepository<UnitOfMeasure, Long> {
+
+    Optional<UnitOfMeasure> findByDescription(String description);
 }
