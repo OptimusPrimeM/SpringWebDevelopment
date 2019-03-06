@@ -111,14 +111,15 @@ public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEve
         guacamole.setNotes(guacamoleNote);
 
         /*Adding Ingredients*/
-        guacamole.getIngredient().add(new Ingredient("Ripe avocados", new BigDecimal(2),eachUom, guacamole));
-        guacamole.getIngredient().add(new Ingredient("Kosher salt", new BigDecimal(0.5),teaSpoonUom,guacamole));
-        guacamole.getIngredient().add(new Ingredient("Fresh lime juice or lemon juice", new BigDecimal(1),tableSpoonUom,guacamole));
-        guacamole.getIngredient().add(new Ingredient("Minced red onion or thinly sliced green onions", new BigDecimal(2),tableSpoonUom,guacamole));
-        guacamole.getIngredient().add(new Ingredient("Serrano chiles, stems and seeds removed, minced", new BigDecimal(1),eachUom,guacamole));
-        guacamole.getIngredient().add(new Ingredient("Cilantro (leaves and tender stems), finely chopped", new BigDecimal(2),tableSpoonUom,guacamole));
-        guacamole.getIngredient().add(new Ingredient("Freshly grated black pepper", new BigDecimal(1),dashUom,guacamole));
-        guacamole.getIngredient().add(new Ingredient("Ripe tomato, seeds and pulp removed, choppeds", new BigDecimal(0.5),eachUom,guacamole));
+        guacamole.addIngredient(new Ingredient("Ripe avocados", new BigDecimal(2),eachUom));
+        guacamole.addIngredient(new Ingredient("Kosher salt", new BigDecimal(0.5),teaSpoonUom));
+        guacamole.addIngredient(new Ingredient("Fresh lime juice or lemon juice", new BigDecimal(1),tableSpoonUom));
+        guacamole.addIngredient(new Ingredient("Minced red onion or thinly sliced green onions", new BigDecimal(2),tableSpoonUom));
+        guacamole.addIngredient(new Ingredient("Serrano chiles, stems and seeds removed, minced", new BigDecimal(1),eachUom));
+        guacamole.addIngredient(new Ingredient("Cilantro (leaves and tender stems), finely chopped", new BigDecimal(2),tableSpoonUom));
+        guacamole.addIngredient(new Ingredient("Freshly grated black pepper", new BigDecimal(1),dashUom));
+        guacamole.addIngredient(new Ingredient("Ripe tomato, seeds and pulp removed, choppeds", new BigDecimal(0.5),eachUom));
+        
 
         /*Adding Category*/
         guacamole.getCategories().add(maxicanCategory);
