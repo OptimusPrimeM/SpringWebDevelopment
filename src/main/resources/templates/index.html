@@ -24,6 +24,21 @@
 
     <h1>Index Page</h1>
 
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe : ${recipes}">
+            <td th:text="${recipe.id}">Mark</td>
+            <td th:text="${recipe.description}">Otto</td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 
 

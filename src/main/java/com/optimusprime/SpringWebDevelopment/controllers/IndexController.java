@@ -4,7 +4,9 @@ import com.optimusprime.SpringWebDevelopment.domain.Category;
 import com.optimusprime.SpringWebDevelopment.domain.UnitOfMeasure;
 import com.optimusprime.SpringWebDevelopment.repositories.CategoryRepository;
 import com.optimusprime.SpringWebDevelopment.repositories.UnitOfMeasureRepository;
+import com.optimusprime.SpringWebDevelopment.services.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
@@ -12,23 +14,17 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
+   private RecipeService recipeService;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
-
 
     @RequestMapping({"", "/", "/index"})
-    public String getIndexPage() {
+    public String getIndexPage(Model model) {
 
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("Italian");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Ounce");
-
-        System.out.println("Category ID = " + categoryOptional.get().getId());
-        System.out.println("Unit Of measure ID = " + unitOfMeasureOptional.get().getId());
+        model.addAttribute("recipes", recipeService.getAllRecipes());
         return "index";
     }
+
 }
