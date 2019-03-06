@@ -119,7 +119,7 @@ public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEve
         guacamole.addIngredient(new Ingredient("Cilantro (leaves and tender stems), finely chopped", new BigDecimal(2),tableSpoonUom));
         guacamole.addIngredient(new Ingredient("Freshly grated black pepper", new BigDecimal(1),dashUom));
         guacamole.addIngredient(new Ingredient("Ripe tomato, seeds and pulp removed, choppeds", new BigDecimal(0.5),eachUom));
-        
+
 
         /*Adding Category*/
         guacamole.getCategories().add(maxicanCategory);
