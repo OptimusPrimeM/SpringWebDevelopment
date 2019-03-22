@@ -35,7 +35,7 @@ public class UnitOfMeasureRepositoryIT {
 
     @Test
     public void findByDescriptionOfCup() throws Exception {
-        Optional<UnitOfMeasure> measureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+        Optional<UnitOfMeasure> measureOptional = unitOfMeasureRepository.findByDescription("Cup");
 
         assertEquals("Cup", measureOptional.get().getDescription());
     }
