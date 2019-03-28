@@ -40,12 +40,23 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Description</th>
+            <th scope="col">View</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="recipe : ${recipes}">
+            <!--/*@thymesVar id="recipe" type="com.optimusprime.SpringWebDevelopment.domain.Recipe"*/-->
             <td th:text="${recipe.id}">Mark</td>
             <td th:text="${recipe.description}">Otto</td>
+            <td>
+                <a
+                        class="badge badge-secondary"
+                        href="#"
+                        th:href="@{'/recipe/' + ${recipe.id}}">
+
+                    View
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
