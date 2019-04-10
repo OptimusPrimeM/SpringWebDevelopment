@@ -1,5 +1,7 @@
 package com.optimusprime.SpringWebDevelopment.services;
 
+import com.optimusprime.SpringWebDevelopment.converters.RecipeCommandToRecipe;
+import com.optimusprime.SpringWebDevelopment.converters.RecipeToRecipeCommand;
 import com.optimusprime.SpringWebDevelopment.domain.Recipe;
 import com.optimusprime.SpringWebDevelopment.repositories.RecipeRepository;
 import org.junit.Before;
@@ -24,11 +26,17 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeServiceImpl = new RecipeServiceImpl(recipeRepository);
+        recipeServiceImpl = new RecipeServiceImpl(recipeRepository, recipeToRecipeCommand, recipeCommandToRecipe);
     }
 
     @Test
@@ -70,6 +78,5 @@ public class RecipeServiceImplTest {
         verify(recipeRepository,never()).findAll();
 
     }
-
 
 }

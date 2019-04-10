@@ -1,9 +1,13 @@
 package com.optimusprime.SpringWebDevelopment.services;
 
+import com.optimusprime.SpringWebDevelopment.commands.RecipeCommand;
+import com.optimusprime.SpringWebDevelopment.converters.RecipeCommandToRecipe;
+import com.optimusprime.SpringWebDevelopment.converters.RecipeToRecipeCommand;
 import com.optimusprime.SpringWebDevelopment.domain.Recipe;
 import com.optimusprime.SpringWebDevelopment.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -14,9 +18,14 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
     private RecipeRepository recipeRepository;
+    private RecipeToRecipeCommand recipeToRecipeCommand;
+    private RecipeCommandToRecipe recipeCommandToRecipe;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, RecipeToRecipeCommand recipeToRecipeCommand,
+                             RecipeCommandToRecipe recipeCommandToRecipe) {
         this.recipeRepository = recipeRepository;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
     }
 
     @Override
@@ -41,4 +50,16 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeOptional.get();
 
     }
+
+    @Override
+    @Transactional
+    public RecipeCommand savedRecipe(RecipeCommand recipeCommand) {
+
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(recipeCommand);
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.debug("Saved recipe ID = %s", savedRecipe.getId() );
+        return recipeToRecipeCommand.convert(savedRecipe);
+    }
+
+
 }
